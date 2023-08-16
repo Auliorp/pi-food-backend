@@ -17,7 +17,7 @@ const parseRecipe = (arr) =>
 
 const getRecipesNameControllers = async (name) => {
    const { data } = await axios(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=20&addRecipeInformation=true`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=50&addRecipeInformation=true`
    );
    const dbData = await getAllRecipesControllers();
 

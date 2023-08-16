@@ -2,12 +2,10 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const routes = require("./routes/index.js");
 const getRecipeIdRecipe = require("./routes/getRecipesIdRecipe.js");
 const getRecipesName = require("./routes/getRecipesName.js");
 const postRecipesName = require("./routes/postRecipesName.js");
 const getDiets = require("./routes/getDiets.js");
-const getRecipesNameControllers = require("./controllers/getRecipesNameControllers.js");
 
 require("./db.js");
 

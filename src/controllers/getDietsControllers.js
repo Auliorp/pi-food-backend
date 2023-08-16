@@ -11,7 +11,7 @@ const getDietsControllers = async () => {
 
    if (!verifyDiets.length) {
       const { data } = await axios(
-         `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=2&addRecipeInformation=true`
+         `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=12&addRecipeInformation=true`
       );
 
       const apiDiets = data.results.map((diet) => {
