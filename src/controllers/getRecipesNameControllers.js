@@ -15,22 +15,18 @@ const parseRecipe = (arr) =>
       };
    });
 
-const getRecipesNameControllers = async (name) => {
+const getRecipesNameControllers = async (type) => {
    const { data } = await axios(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=50&addRecipeInformation=true`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=5&addRecipeInformation=true`
    );
+
    const dbData = await getAllRecipesControllers();
 
    const storeRecipe = parseRecipe(data.results.concat(dbData));
+   if (type === "all") return storeRecipe;
+   if (type === "api") return parseRecipe(data.results);
 
-   const filterApi = storeRecipe.filter((recipe) =>
-      recipe?.name?.toLowerCase()?.includes(name?.toLowerCase())
-   );
-   if (filterApi.length) {
-      const response = [...filterApi];
-      return response;
-   }
-   return storeRecipe;
+   return parseRecipe(dbData);
 };
 
 const getAllRecipesControllers = async () => {
@@ -41,6 +37,7 @@ const getAllRecipesControllers = async () => {
          through: { attributes: [] },
       },
    });
+
    for (let i = 0; i < verifyRecipes.length; i++) {
       for (let j = 0; j < verifyRecipes[i].dataValues.diets.length; j++) {
          verifyRecipes[i].dataValues.diets[j] =
@@ -49,7 +46,6 @@ const getAllRecipesControllers = async () => {
    }
 
    const recipesData = verifyRecipes.map((recipe) => recipe.dataValues);
-
    return recipesData;
 };
 
