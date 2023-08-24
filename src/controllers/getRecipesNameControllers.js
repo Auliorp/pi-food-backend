@@ -3,6 +3,7 @@ const { Recipe, Diets } = require("../db");
 require("dotenv").config();
 const { API_KEY } = process.env;
 
+//analizar receta
 const parseRecipe = (arr) =>
    arr.map((element) => {
       return {
@@ -17,7 +18,7 @@ const parseRecipe = (arr) =>
 
 const getRecipesNameControllers = async (type) => {
    const { data } = await axios(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=5&addRecipeInformation=true`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`
    );
 
    const dbData = await getAllRecipesControllers();
